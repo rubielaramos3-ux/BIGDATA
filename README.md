@@ -41,29 +41,23 @@ asignamos ip de la maquina virtual e inicimos sesion con las mismas credenciales
 - realizamos la instalacion de de librería python en kafka en donde se descarga  y despues se 
     descomprimir el archivo
 
-incio del ejercicio
+Ejecuciòn del ejercicio
  
--iniciamos el servidor de zookeeper
+1. iniciamos el servidor de zookeeper
 sudo /opt/Kafka/bin/zookeeper-server-start.sh /opt/Kafka/config/zookeeper.properties
--  iniciar el implementar el ejercicio se creo un archivo llamado kafka_producer
+2.  iniciar el implementar el ejercicio se creo un archivo llamado kafka_producer
 sudo /opt/Kafka/bin/kafka-server-start.sh /opt/Kafka/config/server.properties
 
-
- 
-- para el procesamiento de batch usamos datos publicos de los puesto de votacion 
+3. Se utilizo para el procesamiento de batch datos publicos de los puesto de votacion 
 en la cual se cargo directamente del link de la pagina 
-con el comando 
-ls -l
+con el comando "ls -l"  podemos verificar los archivos de trabajo:
 
-- podemos verificar los archivos de trabajo 
 * kafkaproducer- para simular y transmitir eventos en tiempo real hacia Kafka.
-en esta parte podemos observar el contenido de :
 * prueba batch-análisis estático sobre el archivo CSV de puestos de votación.
 * prueba straming- para consumir y procesar el flujo continuo de datos de Kafka.
 * archivo de puestos de votacion cvs
 
-
-python3 prueba_batch.py 
+4. Propocionamos el comando "python3 prueba_batch.py"
 Al ejecutarlo, observamos los siguientes pasos en pantalla:
 
   Carga de Datos: Spark lee el archivo CSV DE LOS PUESTOS DE VOTACION
@@ -71,15 +65,13 @@ Al ejecutarlo, observamos los siguientes pasos en pantalla:
   Análisis Exploratorio (EDA): Se calculan métricas descriptivas
 
 
-segunda ventana putty:
+5. Abrimos una segunda ventana de putty:
 iniciamos el productor que simula la llegada continua de datos de sensores
+"python3 kafka_producer.py"
 
-python3 kafka_producer.py
-
-Tercera ventana putty:
+6. Ejecutamos una Tercera ventana de putty:
 Ejecutamos la aplicación de Spark Streaming incluyendo el conector oficial de Spark-Kafka
-
-spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.2 spark_streaming_consumer.py
+"spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.2 spark_streaming_consumer.py"
 
 observando el resultado  en la consola de Spark empieza a actualizarse la tabla por micro-lotes en tiempo real. 
 Spark toma los mensajes JSON de Kafka, los parsea bajo el esquema estructurado y 
